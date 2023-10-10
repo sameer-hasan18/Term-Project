@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import userRouter from './routes/user.route.js';
 
 mongoose
     .connect("mongodb+srv://hiveatwork:hiveatwork@hospital-management.4t5xuja.mongodb.net/hospital-management?retryWrites=true&w=majority")
@@ -14,5 +15,6 @@ const app = express();
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
-    }
-)
+});
+
+app.use("/api/user", userRouter);
