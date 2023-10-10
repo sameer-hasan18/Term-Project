@@ -1,4 +1,14 @@
 import express from 'express';
+import mongoose from 'mongoose';
+
+mongoose
+    .connect("mongodb+srv://hiveatwork:hiveatwork@hospital-management.4t5xuja.mongodb.net/hospital-management?retryWrites=true&w=majority")
+    .then(() => {
+        console.log('Connected to MongoDB!');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 const app = express();
 
