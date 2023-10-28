@@ -16,7 +16,7 @@ export default function Header() {
         <ul className='flex gap-4 items-end'>
           <Link to='/home-user'>
             {currentUser ? (
-              <li className=' text-slate-700 hover:underline'> UserHome</li>
+              <li className=' text-slate-700 hover:underline'> Main</li>
             ) : (
               <li className=' text-slate-700 hover:underline'> Home</li>
             )}
