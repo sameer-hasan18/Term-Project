@@ -14,11 +14,14 @@ export default function Header() {
           </h1>
         </Link>
         <ul className='flex gap-4 items-end'>
-          <Link to='/'>
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
-              Home
-            </li>
+          <Link to='/home-user'>
+            {currentUser ? (
+              <li className=' text-slate-700 hover:underline'> UserHome</li>
+            ) : (
+              <li className=' text-slate-700 hover:underline'> Home</li>
+            )}
           </Link>
+
           <Link to='/about'>
             <li className='hidden sm:inline text-slate-700 hover:underline'>
               About

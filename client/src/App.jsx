@@ -8,7 +8,8 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Home_user from './pages/Home_user';
 import Home_doctor from './pages/Home_doctor';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateProfile from './components/PrivateProfile';
+import PrivateHomeUser from './components/PrivateHomeUser';
 
 
 export default function App() {
@@ -21,10 +22,12 @@ export default function App() {
           <Route path="/sign-in-doctor" element={<SignInDoctor />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/about" element={<About />} />
-          <Route path="/home-user" element={<Home_user />} />
           <Route path="/home-doctor" element={<Home_doctor />} />
-          <Route element={<PrivateRoute />}>
+          <Route element={<PrivateProfile />}>
             <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route element={<PrivateHomeUser />}>
+            <Route path="/home-user" element={<Home_user />} />
           </Route>
         </Routes>
       </BrowserRouter>
