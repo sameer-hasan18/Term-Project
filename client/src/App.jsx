@@ -8,23 +8,25 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import Home_user from './pages/Home_user';
 import Home_doctor from './pages/Home_doctor';
+import PrivateRoute from './components/PrivateRoute';
 
 
 export default function App() {
     return (
-        <BrowserRouter>
-            <Header/>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/sign-in" element={<SignIn />} />
-                <Route path="/sign-in-doctor" element={<SignInDoctor />}/>
-                <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/home-user" element={<Home_user />} />
-                <Route path="/home-doctor" element={<Home_doctor />} />
-
-            </Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-in-doctor" element={<SignInDoctor />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/home-user" element={<Home_user />} />
+          <Route path="/home-doctor" element={<Home_doctor />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     );
 };
