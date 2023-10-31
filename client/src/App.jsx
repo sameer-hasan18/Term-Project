@@ -4,6 +4,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import About from './pages/About';
 import Profile from './pages/Profile';
+import ProfilePatient from './pages/Profile-patient';
 import Header from './components/Header';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/profile-patient" element = {<ProfilePatient/>}/>
             </Routes>
         </BrowserRouter>
     );
