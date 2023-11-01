@@ -362,6 +362,9 @@ export default function Profile() {
         </div>
       </div>
       <div style={styles.Box3} className='Box3'>
+      <h1>
+          Update Personal Information:
+        </h1>
         <h1 >
           First Name: Bob <br />
         </h1>
