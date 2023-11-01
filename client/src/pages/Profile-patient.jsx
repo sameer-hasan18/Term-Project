@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
+import axios from 'axios';
 
 const styles = {
   mainBox: {
@@ -36,7 +37,7 @@ const styles = {
     top: '120px',
     left: '66%',
     height: '400px',
-    width: '34%',
+    width: '33%',
     backgroundColor: 'aliceblue',
     border: '2px solid black',
     padding: '20px',
@@ -50,7 +51,7 @@ const styles = {
     top: '540px',
     left: '66%',
     height: '380px',
-    width: '34%',
+    width: '33%',
     backgroundColor: 'aliceblue',
     border: '2px solid black',
     padding: '20px',
@@ -234,7 +235,7 @@ export default function Profile() {
       setCurrentMonth(currentMonth + 1);
     }
   };
-
+  
   return (
     <div >
       <div>
@@ -246,7 +247,7 @@ export default function Profile() {
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile Picture" style={styles.picture} className="picture" />
         <br />
         <div>
-          <h1>Name: Bob Smith</h1>
+          <h1>Name: Bob</h1>
         </div>
       </div>
       <div style={styles.Box2} className='Box2'>
@@ -417,14 +418,14 @@ export default function Profile() {
       <div style={styles.Box4} className='Box4'>
         <div style={styles.calendar}>
           <h2 style={styles.calendarHeader}>My Calendar</h2>
-          <button onClick={prevMonth} style={{ position: 'absolute', top: '45px', left: '100px' }}>&#9665;</button>
+          <button onClick={prevMonth} style={{ position: 'absolute', top: '45px', left: '35%' }}>&#9665;</button>
           <span>
             {new Date(currentYear, currentMonth).toLocaleString('en-US', {
               month: 'long',
               year: 'numeric',
             })}
           </span>
-          <button onClick={nextMonth} style={{ position: 'absolute', top: '45px', left: '300px' }}>&#9655;</button>
+          <button onClick={nextMonth} style={{ position: 'absolute', top: '45px', left: '63%' }}>&#9655;</button>
           <table style={styles.calendarTable}>
             <thead>
               <tr>
