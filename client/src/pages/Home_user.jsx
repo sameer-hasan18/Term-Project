@@ -126,16 +126,22 @@ export default function HomeUser() {
           User
         </button>
         <button
-          className={activeTab === 'Appointment' ? 'active' : ''}
-          onClick={() => handleTabClick('Appointment')}
+          className={activeTab === ' Make Appointment' ? 'active' : ''}
+          onClick={() => handleTabClick('Make Appointment')}
         >
-          Appointment
+          Make Appointment
         </button>
         <button
           className={activeTab === 'Doctors' ? 'active' : ''}
           onClick={() => handleTabClick('Doctors')}
         >
           Doctors
+        </button>
+        <button
+          className={activeTab === 'Existing Appointments' ? 'active' : ''}
+          onClick={() => handleTabClick('Existing Appointments')}
+        >
+          Existing Appointments
         </button>
         <button
           className={activeTab === 'Prescriptions' ? 'active' : ''}
@@ -149,11 +155,12 @@ export default function HomeUser() {
         >
           Planned Operations
         </button>
+        
       </div>
 
       <div className="content">
         {activeTab === 'User' && <h1>Welcome to your Patient Home Page!</h1>}
-        {activeTab === 'Appointment' && (
+        {activeTab === 'Make Appointment' && (
           <div className="appointment-tab">
             <h1>Book An Appointment!</h1>
             <label>Select a Doctor:</label>
