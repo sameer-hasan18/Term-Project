@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './Home_user.css'; 
+import './Home_user.css';
 
 
 export default function HomeUser() {
   const [activeTab, setActiveTab] = useState('User');
 
-  const [selectedDoctor, setSelectedDoctor] = useState(''); 
-  const [selectedTime, setSelectedTime] = useState(''); 
+  const [selectedDoctor, setSelectedDoctor] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
   const [selectedConcern, setSelectedConcern] = useState('');
   const [appButton, setAppButton] = useState(false);
 
@@ -18,6 +18,11 @@ export default function HomeUser() {
     setSelectedDoctor(event.target.value);
   };
 
+  const [selectedDate, setSelectedDate] = useState('');
+  const handleDateSelect = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
   const handleTimeSelect = (event) => {
     setSelectedTime(event.target.value);
   };
@@ -26,8 +31,12 @@ export default function HomeUser() {
     setSelectedConcern(event.target.value);
   };
 
+  const [allAppointments, setAllAppointments] = useState([]);
   const handleAppBooked = () => {
     setAppButton(true);
+    // Store the newly booked appointment
+    const newAppointment = { doctor: selectedDoctor, date: selectedDate, time: selectedTime, concern: selectedConcern };
+    setAllAppointments([...allAppointments, newAppointment]);
   };
 
 
@@ -82,40 +91,81 @@ export default function HomeUser() {
     );
   };
 
-  const PlannedOperationsTable = () => {
-    const plannedOperationsData = [
-      { id: 1, operationID: 'OP-001', description: 'Xray', date: '2023-11-15', doctor: 'Dr. Smith' },
-      { id: 2, operationID: 'OP-002', description: 'Knee replacement', date: '2023-11-20', doctor: 'Dr. Johnson' },
-    ];
+  const PlannedOperationsTable = ({ plannedAppointments }) => {
+    const currentDate = new Date();
+
+    const futureAppointments = plannedAppointments.filter(
+      (appointment) => new Date(appointment.date) > currentDate
+    );
 
     return (
       <table>
         <thead>
           <tr style={{ background: 'black', color: 'white' }}>
-            <th> # </th>
-            <th>Operation ID</th>
-            <th>Description</th>
-            <th>Date</th>
+            <th>#</th>
             <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Concern</th>
           </tr>
         </thead>
         <tbody>
-          {plannedOperationsData.map((operation, index) => (
-            <tr key={operation.id}>
-              <td>{index + 1}</td>
-              <td>{operation.operationID}</td>
-              <td>{operation.description}</td>
-              <td>{operation.date}</td>
-              <td>{operation.doctor}</td>
-            </tr>
+          {futureAppointments.map((appointment, index) => (
+            <tr key={index}>
+            <td>{index + 1}</td>
+            <td>{appointment.doctor}</td>
+            <td>{appointment.date}</td> {/* Ensure 'date' is correctly populated */}
+            <td>{appointment.time}</td>
+            <td>{appointment.concern}</td>
+          </tr>
           ))}
         </tbody>
       </table>
     );
   };
 
-
+  const ExistingAppointments = ({ appointments }) => {
+    return (
+      <div className="existing-appointments">
+        <h1>Your Appointments</h1>
+        {appointments.length > 0 ? (
+          <table>
+            <thead>
+              <tr style={{ background: 'black', color: 'white' }}>
+                <th>#</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Concern</th>
+              </tr>
+            </thead>
+            <tbody>
+              {appointments.map((appointment, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{appointment.doctor}</td>
+                  <td>{appointment.date}</td> {/* Ensure 'date' is correctly populated */}
+                  <td>{appointment.time}</td>
+                  <td>{appointment.concern}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No existing appointments</p>
+        )}
+      </div>
+    );
+  };
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = `${today.getMonth() + 1}`.padStart(2, '0'); // Month is zero-indexed
+    const day = `${today.getDate()}`.padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
   
+
   return (
     <div>
       <div className="header">
@@ -155,7 +205,7 @@ export default function HomeUser() {
         >
           Planned Operations
         </button>
-        
+
       </div>
 
       <div className="content">
@@ -169,6 +219,15 @@ export default function HomeUser() {
               <option value="Dr. Smith">Dr. Smith</option>
               <option value="Dr. Johnson">Dr. Johnson</option>
             </select>
+            <label>Select a Date:</label>
+            <input type="date" value={selectedDate} onChange={handleDateSelect} min={getCurrentDate()} style={
+              {fontSize: "18px", 
+              padding: "10px", 
+              width: "100%", 
+              maxWidth: "300px", 
+              margin: "10px auto", 
+              border: "2px solid #5a5a5a", 
+              borderRadius: "4px"}}/>
 
             <label>Select an available time:</label>
             <select value={selectedTime} onChange={handleTimeSelect}>
@@ -200,25 +259,31 @@ export default function HomeUser() {
         )}
 
         {activeTab === 'Doctors' && (
-          <div className = "doctor-Tab">
+          <div className="doctor-Tab">
             <h1>Here are our Doctors!</h1>
             <DoctorsList />
           </div>
         )}
 
         {activeTab === 'Prescriptions' && (
-          <div className = "prescription-Tab">
+          <div className="prescription-Tab">
             <h1>Your Active Prescriptions</h1>
             <PrescriptionsTable />
           </div>
-        )} 
+        )}
 
         {activeTab === 'Planned Operations' && (
-          <div className = "operations-Tab" >
+          <div className="operations-Tab">
             <h1>Your Upcoming Planned Procedures</h1>
-            <PlannedOperationsTable />
+            <PlannedOperationsTable plannedAppointments={allAppointments} />
           </div>
         )}
+
+
+        {activeTab === 'Existing Appointments' && (
+          <ExistingAppointments appointments={allAppointments} />
+        )}
+
       </div>
     </div>
   );
