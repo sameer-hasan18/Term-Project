@@ -4,11 +4,24 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    color: #fff; 
+    color: #ffffff; 
     font-size: 18px;
     font-weight:bold;
   }
   
+  .patient-home-image {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .patientHeading {
+    font-weight: bold;
+  }
+  
+  .existing-app {
+    font-weight: bold;
+  }
+
   .button {                     
     background: none;
     border: none;
@@ -36,6 +49,16 @@
     margin-bottom: 20px;
   }
   
+  .bold-text {
+    font-weight: bold;
+    color:#0000CC;
+  }
+
+  .procedure-text {
+    font-weight: bold;
+    color:#0000CC;
+  }
+
   select {              /*Drop down menu*/
     font-size: 18px; 
     padding: 10px; 
@@ -63,20 +86,29 @@
     color: white; 
     padding: 10px;
     text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid black;
   }
   
   table td {
     padding: 10px;
     text-align: left;
     border-top: 1px solid #ddd;
+    border: 2px solid black;
   }
 
+  table td,
+  table th {
+    font-weight: bold;
+    border: 2px solid black;
+  }
 
   /*Appointment tab */
   .submit-button {
     display: block;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: bold;
     background-color: #5a5a5a;
     color: #fff;
@@ -85,6 +117,7 @@
     border-radius: 4px;
     border: none;
     transition: background-color 0.3s, text-decoration 0.3s;
+    margin-bottom: 20px;
   }
   
   .submit-button:hover {
@@ -128,29 +161,29 @@
 
 /* Stylign Doctors Tab */
 
-.doctors-grid {
+.chatbot-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
-.doctor-box {
+.chatbot-box {
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-.doctor-Tab h1 { 
+.chatbot-Tab h1 { 
   font-size: 24px;
   margin-bottom: 20px;
 }
-.doctor-box h2 {
+.chatbot-box h2 {
   font-size: 20px;
   margin-top: 0;
 }
 
-.doctor-box p {
+.chatbot-box p {
   margin: 0;
   margin-bottom: 10px;
 }
@@ -164,3 +197,50 @@
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+.appointment-tab .right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appointment-tab .form-group {
+  margin-bottom: 15px;
+}
+
+.appointment-tab .form-group label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.appointment-tab h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.chat-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #5a5a5a;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it's on top of other elements */ 
+}
+
+.images-container {
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+  margin-top: 20px; /* Add margin if necessary */
+}
+
+.operating-image,
+.operating-image2 {
+  width: 45%; /* Adjust the width as needed */
+  max-width: 500px; 
+}
+

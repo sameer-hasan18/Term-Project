@@ -10,6 +10,7 @@ import Home_user from './pages/Home_user';
 import Home_doctor from './pages/Home_doctor';
 import PrivateProfile from './components/PrivateProfile';
 import PrivateHomeUser from './components/PrivateHomeUser';
+import Search from './pages/chatbot';
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <Route element={<PrivateHomeUser />}>
             <Route path="/home-user" element={<Home_user />} />
           </Route>
+          <Route path="/search" element={<Search />} />
         </Routes>
       </BrowserRouter>
     );
